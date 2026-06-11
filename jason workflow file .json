@@ -1,0 +1,348 @@
+{
+  "name": "My workflow 4",
+  "nodes": [
+    {
+      "parameters": {
+        "public": true,
+        "initialMessages": "🌍 Welcome to Lucy – Ethiopian Tourism Assistant!\n\nI can help with:\n\n🏛️ Attractions\n🏨 Hotels\n🍽️ Restaurants\n🚌 Transportation\n🛂 Visa Information\n🚨 Emergency Contacts\n🗺️ Travel Planning\n\nI also support multiple languages:\n🇬🇧 English\n🇪🇹 አማርኛ\n🇪🇹 Afaan Oromo\n🇪🇹 ትግርኛ\n🇸🇦 العربية\n\nHow can I help you explore Ethiopia today?",
+        "options": {
+          "inputPlaceholder": "Ask about Ethiopia...",
+          "subtitle": "Discover Ethiopia's attractions, hotels, restaurants, transportation, visa information and travel tips.",
+          "title": "Lucy - Ethiopian Tourism Assistant"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -160,
+        -816
+      ],
+      "id": "fd5da557-02eb-479d-a7e8-6b42ac6bd011",
+      "name": "When chat message received",
+      "webhookId": "cf3c1a56-b0e2-414f-95ca-28e837a7fe8b"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are Lucy, an Ethiopian Tourism Assistant.\n\nYour primary responsibility is to help tourists visiting Ethiopia.\n\nUse the available Google Sheets tools to retrieve information about:\n- Tourist attractions\n- Hotels\n- Restaurants\n- Transportation\n- Visa information\n- Emergency contacts\n\nIf a question is not covered by the knowledge base, provide helpful travel guidance based on your general knowledge.\n\nYou can assist tourists with:\n- Trip planning\n- Travel tips\n- Local customs and etiquette\n- Weather preparation\n- Packing advice\n- Safety recommendations\n- Currency information\n- Language assistance\n- Suggested itineraries\n- Cultural information\n- Food recommendations\n\nAlways be friendly, professional, and concise.\n\nNever make up hotel, restaurant, transportation, visa, or emergency contact information. Use the knowledge base for those answers.\n\nIf information is unavailable in the knowledge base, clearly state that you could not find verified information.\n\nBefore answering:\n1. Detect the language of the user's message.\n2. Use the same language in your response.\n3. If the language is unclear, use English."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        224,
+        -816
+      ],
+      "id": "5a7b7294-e58e-4623-a1fb-481747cbc1c0",
+      "name": "AI Agent1"
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 10
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        -176,
+        -544
+      ],
+      "id": "68b00861-cf8d-4494-b76e-94d766aed268",
+      "name": "Simple Memory1"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1iVh_kcnuJr8fCHGdlqMRhVENLJWuKXmsN_EZv8JAaAY",
+          "mode": "list",
+          "cachedResultName": "Lucy Tourism Knowledge Base",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iVh_kcnuJr8fCHGdlqMRhVENLJWuKXmsN_EZv8JAaAY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Attractions",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iVh_kcnuJr8fCHGdlqMRhVENLJWuKXmsN_EZv8JAaAY/edit#gid=0"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        448,
+        -512
+      ],
+      "id": "154ff55d-c77b-4d26-9792-38291119c97b",
+      "name": "Get row(s) in sheet in Google Sheets6",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "IsA1VHkFAEragHTI",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1iVh_kcnuJr8fCHGdlqMRhVENLJWuKXmsN_EZv8JAaAY",
+          "mode": "list",
+          "cachedResultName": "Lucy Tourism Knowledge Base",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iVh_kcnuJr8fCHGdlqMRhVENLJWuKXmsN_EZv8JAaAY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1022033301,
+          "mode": "list",
+          "cachedResultName": "Hotels",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iVh_kcnuJr8fCHGdlqMRhVENLJWuKXmsN_EZv8JAaAY/edit#gid=1022033301"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        144,
+        -560
+      ],
+      "id": "b7a35770-b27e-455a-a96f-dff2c00b03b6",
+      "name": "Get row(s) in sheet in Google Sheets7",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "IsA1VHkFAEragHTI",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1iVh_kcnuJr8fCHGdlqMRhVENLJWuKXmsN_EZv8JAaAY",
+          "mode": "list",
+          "cachedResultName": "Lucy Tourism Knowledge Base",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iVh_kcnuJr8fCHGdlqMRhVENLJWuKXmsN_EZv8JAaAY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 897290863,
+          "mode": "list",
+          "cachedResultName": "Restaurants",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iVh_kcnuJr8fCHGdlqMRhVENLJWuKXmsN_EZv8JAaAY/edit#gid=897290863"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        304,
+        -512
+      ],
+      "id": "5792655f-d6bf-425f-a5e7-828f6a8edc0a",
+      "name": "Get row(s) in sheet in Google Sheets8",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "IsA1VHkFAEragHTI",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1iVh_kcnuJr8fCHGdlqMRhVENLJWuKXmsN_EZv8JAaAY",
+          "mode": "list",
+          "cachedResultName": "Lucy Tourism Knowledge Base",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iVh_kcnuJr8fCHGdlqMRhVENLJWuKXmsN_EZv8JAaAY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 560672774,
+          "mode": "list",
+          "cachedResultName": "Visa",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iVh_kcnuJr8fCHGdlqMRhVENLJWuKXmsN_EZv8JAaAY/edit#gid=560672774"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        0,
+        -544
+      ],
+      "id": "4e736b80-77e4-4e53-b16c-e4a7dc20229e",
+      "name": "Get row(s) in sheet in Google Sheets",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "IsA1VHkFAEragHTI",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1iVh_kcnuJr8fCHGdlqMRhVENLJWuKXmsN_EZv8JAaAY",
+          "mode": "list",
+          "cachedResultName": "Lucy Tourism Knowledge Base",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iVh_kcnuJr8fCHGdlqMRhVENLJWuKXmsN_EZv8JAaAY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 349222298,
+          "mode": "list",
+          "cachedResultName": "Emergency Contacts Tab",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1iVh_kcnuJr8fCHGdlqMRhVENLJWuKXmsN_EZv8JAaAY/edit#gid=349222298"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTool",
+      "typeVersion": 4.7,
+      "position": [
+        608,
+        -576
+      ],
+      "id": "a657da13-454c-43b7-8a1e-a4939fbadbaa",
+      "name": "Get row(s) in sheet in Google Sheets2",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "IsA1VHkFAEragHTI",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-5-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -368,
+        -560
+      ],
+      "id": "69f9322b-c655-49ce-bd37-ce0dab5f0d9f",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "7Gj9Dk7Lji10Qrmg",
+          "name": "n8n free OpenAI API credits"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Simple Memory1": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets6": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets7": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets8": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get row(s) in sheet in Google Sheets2": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent1",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "2d90e33f-5b64-4935-bb76-a9d11b87da7c",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "2665d1525b9295349d819dd3239a3d154c5c369fa05e22266d635f340c7f1e3a"
+  },
+  "nodeGroups": [],
+  "id": "byIz65yUj8ytfN6f",
+  "tags": []
+}
