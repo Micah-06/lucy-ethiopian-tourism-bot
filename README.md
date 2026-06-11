@@ -9,7 +9,7 @@ Lucy is an AI-powered tourism assistant designed to help travelers explore Ethio
 - Visa guidance
 - Emergency contacts
 - Culture and food recommendations
-- Multi-language support (coming soon)
+- Multi-language support 
 
 ## Tech Stack
 - n8n
